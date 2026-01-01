@@ -28,6 +28,10 @@ const Preview = React.forwardRef((props, ref) => {
         }
     };
 
+    if (props.printMode) {
+        return renderTemplate();
+    }
+
     return (
         <div className="bg-gray-100 p-8 flex justify-center overflow-auto h-full min-h-screen">
             <div className="transform scale-[0.6] md:scale-[0.7] lg:scale-[0.8] origin-top">

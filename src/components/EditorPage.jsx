@@ -1,26 +1,19 @@
 import React, { useRef } from 'react';
-import html2pdf from 'html2pdf.js';
 import { useCV } from '../context/CVContext';
 import Editor from './Editor';
 import Preview from './Preview';
 import { Download, LayoutTemplate } from 'lucide-react';
 import SEO from './SEO';
 
+import PrintPortal from './PrintPortal';
+
 const EditorPage = () => {
     const { selectedTemplate, setSelectedTemplate, t, personalInfo } = useCV();
     const componentRef = useRef();
+    const printRef = useRef();
 
     const handleDownloadPDF = () => {
-        const element = componentRef.current;
-        const opt = {
-            margin: 0,
-            filename: `${personalInfo.name || 'Resume'}_CV.pdf`,
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-
-        html2pdf().set(opt).from(element).save();
+        window.print();
     };
 
     return (
@@ -30,6 +23,14 @@ const EditorPage = () => {
                 description={t.editorDesc}
                 keywords={t.editorKeywords}
             />
+
+            {/* Hidden Print Preview - Visible ONLY when printing */}
+            <PrintPortal>
+                <div id="print-content" className="print-only">
+                    <Preview ref={printRef} printMode={true} />
+                </div>
+            </PrintPortal>
+
             {/* Toolbar */}
             <div className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm z-10">
                 <div className="flex items-center gap-4">

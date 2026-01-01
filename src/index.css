@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+@layer utilities {
+    .print-only {
+        display: none;
+    }
+}
+
+@media print {
+
+    /* Hide everything by default */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Show only the print portal and its children */
+    #print-portal,
+    #print-portal * {
+        visibility: visible;
+    }
+
+    /* Override display: none from utility class */
+    .print-only {
+        display: block !important;
+    }
+
+    /* Position the print portal */
+    #print-portal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hide the root app container explicitly */
+    #root {
+        display: none;
+    }
+
+    @page {
+        size: auto;
+        margin: 0mm;
+    }
+}
