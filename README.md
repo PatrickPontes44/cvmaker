@@ -28,7 +28,7 @@ CV Maker is a modern, user-friendly web application designed to help users creat
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Navigation**: [React Router 7](https://reactrouter.com/)
 - **Head Management**: [React Helmet Async](https://github.com/staylor/react-helmet-async) (SEO)
-- **PDF Generation**: [html2pdf.js](https://koala-interactive.github.io/html2pdf.js/)
+- **PDF Generation**: Native Browser Print (optimized with Custom CSS)
 
 ## Getting Started
 
